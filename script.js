@@ -17,3 +17,30 @@ document.querySelectorAll('.reveal').forEach((element, index) => {
   element.style.transitionDelay = `${Math.min(index % 4, 2) * 80}ms`;
   observer.observe(element);
 });
+
+const emailStatus = document.querySelector('#email-status');
+
+function copyEmailAddress(email) {
+  if (navigator.clipboard && window.isSecureContext) {
+    return navigator.clipboard.writeText(email);
+  }
+
+  const fallback = document.createElement('textarea');
+  fallback.value = email;
+  fallback.setAttribute('readonly', '');
+  fallback.style.position = 'fixed';
+  fallback.style.opacity = '0';
+  document.body.append(fallback);
+  fallback.select();
+  document.execCommand('copy');
+  fallback.remove();
+  return Promise.resolve();
+}
+
+document.querySelectorAll('[data-copy-email]').forEach((action) => {
+  action.addEventListener('click', () => {
+    copyEmailAddress(action.dataset.copyEmail)
+      .then(() => { emailStatus.textContent = 'Email copied — paste it into any mail app.'; })
+      .catch(() => { emailStatus.textContent = 'Email: DimitriGunawan2029@gmail.com'; });
+  });
+});

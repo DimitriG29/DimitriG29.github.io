@@ -111,3 +111,8 @@ a:focus-visible { outline:3px solid rgba(0,113,227,.62); outline-offset:4px; }
 @media (max-width:900px) { .field-notes-grid { grid-template-columns:1fr; }.field-note { min-height:0; }.field-note h3 { margin-top:28px; } }
 @media (max-width:620px) { .field-notes { margin-top:72px; }.field-notes-heading { display:block; }.field-notes-heading h2 { margin-top:18px; }.field-notes-grid { margin-top:30px; } }
 
+.contact-status { position:relative; min-height:20px; margin:14px 0 0; color:#b8d8ff; font-size:12px; }
+
+/* Keep the opening section label together as one compact line. */
+#approach > .section-kicker { flex-wrap:nowrap; white-space:nowrap; }
+
